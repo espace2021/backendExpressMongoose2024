@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
+const auth = require( "../middleware/auth.js");
 // Créer une instance de categorie.
 const Categorie = require('../models/categorie');
 
 // afficher la liste des categories.
-router.get('/', async (req, res )=> {
+router.get('/', auth,async (req, res )=> {
     try {
         const cat = await Categorie.find({}, null, {sort: {'_id': -1}})
                 
